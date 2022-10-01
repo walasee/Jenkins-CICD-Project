@@ -1,5 +1,5 @@
 
-SETUP A FULL CICD PIPELINE 
+STEPS TO SETUP A FULL CICD PIPELINE 
 
 1) Jenkins/Maven/Ansible
     - Create an Amazon Linux 2 VM instance and call it "jenkins-maven-ansible"
