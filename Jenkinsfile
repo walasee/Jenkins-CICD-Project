@@ -47,7 +47,7 @@ pipeline {
       steps {
         sh """mvn sonar:sonar \
             -Dsonar.projectKey=JavaWebApp \
-            -Dsonar.host.url=http://3.16.111.102:9000 \
+            -Dsonar.host.url=http://172.31.45.219:9000 \
             -Dsonar.login=6c06463fdf358dd2bf784fdb515f3ccf2e5200fe"""
       }
     }
