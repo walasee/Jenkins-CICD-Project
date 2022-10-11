@@ -46,9 +46,9 @@ pipeline {
     stage('SonarQube Scan') {
       steps {
         sh """mvn sonar:sonar \
-            -Dsonar.projectKey=JavaWebApp \
-            -Dsonar.host.url=http://172.31.33.185:9000 \
-            -Dsonar.login=6c06463fdf358dd2bf784fdb515f3ccf2e5200fe"""
+              -Dsonar.projectKey=JavaWebApp \
+              -Dsonar.host.url=http://172.31.4.143:9000 \
+              -Dsonar.login=e9733df3fcd6ed54cef307d8ac4cc00eeb2d3611"""
       }
     }
     stage('Upload to Artifactory') {
@@ -71,7 +71,7 @@ pipeline {
     // }
     stage('Deploy to Stage') {
       environment {
-        HOSTS = "stage"
+        HOSTS = "stage" // Make sure to update to "stage"
       }
       steps {
         sh "ansible-playbook ${WORKSPACE}/deploy.yaml --extra-vars \"hosts=$HOSTS workspace_path=$WORKSPACE\""
@@ -94,7 +94,7 @@ pipeline {
   post {
     always {
         echo 'Slack Notifications.'
-        slackSend channel: '#tolu-jenkins-cicd-pipeline-alerts', //update and provide your channel name
+        slackSend channel: '#mbandi-jenkins-cicd-pipeline-alerts', //update and provide your channel name
         color: COLOR_MAP[currentBuild.currentResult],
         message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
     }
